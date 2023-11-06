@@ -16,6 +16,6 @@ Each Chapter shall be in it's own folder. Each Folder shall contain minimum of t
 
 | Chapter                 | Time line                |  Status                 |
 | -----------             | -----------              |---------                |
-| Storage Enginer         | Week of Nov 4,2023       | Chapter Summary in progress         |
+| Storage Engine          | Week of Nov 4,2023       | Chapter Summary in progress         |
 
 
