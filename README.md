@@ -12,10 +12,10 @@ Each Chapter shall be in it's own folder. Each Folder shall contain minimum of t
 - *summary.md* - Summary of chapter with mind map and refined notes
 - additional files shall be added based on the topic, if explored further
 
-### Journey
+Reading Map
 
-| Chapter                 | Time line                |  Status                 |
-| -----------             | -----------              |---------                |
-| Storage Engine          | Week of Nov 4,2023       | Chapter Summary in progress         |
+<img width="549" alt="reading_map" src="https://github.com/ashishpaliwal007/database-internals-book-reading/assets/148831617/c3f8b206-e991-423d-886c-64a7a92bd8eb">
 
+## Contents
+- [Chapter 1: Storage Engines](Week1-StorageEngines/README.md)
 
