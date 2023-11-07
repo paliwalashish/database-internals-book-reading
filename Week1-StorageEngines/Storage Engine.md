@@ -1,5 +1,9 @@
+# Storage Engine
 
-## Storage Engine
+## Mind Map
+
+![Storage Engine Mind Map](./Storage Engine.png)
+
 Based on the usage Database Systems can be broadly classified as
 
 OLTP
