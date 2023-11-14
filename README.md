@@ -18,4 +18,5 @@ Reading Map
 
 ## Contents
 - [Chapter 1: Storage Engines](Week1-StorageEngines/README.md)
+- [Chapter 2: B-Tree Basics](ch2-BTree-Basics/README.md)
 
