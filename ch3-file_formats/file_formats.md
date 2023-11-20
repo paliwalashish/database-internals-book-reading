@@ -67,5 +67,14 @@ _Note_: Here we have not considered the String encoding for simplicity.
 
 *Enums* - Integers can be used to represent enums
 
-* Flags* - represents nonmutually exclusive names. We can use *&* operation to find the value
+*Flags* - represents nonmutually exclusive names. We can use *&* operation to find the value
+
+## Storage Structure
+
+Database can have single file or multi file storage. 
+
+Typically, we have Database stoarge as 
+
+Files - One or more file that stores data or index
+Pages - Files are divided into fixed size pages which stores data/index
 
