@@ -69,12 +69,79 @@ _Note_: Here we have not considered the String encoding for simplicity.
 
 *Flags* - represents nonmutually exclusive names. We can use *&* operation to find the value
 
+### Other Data Types
+
+- null
+- Date time
+- Binary data
+
 ## Storage Structure
 
 Database can have single file or multi file storage. 
 
-Typically, we have Database stoarge as 
+Typically, we have Database storage as 
 
-Files - One or more file that stores data or index
-Pages - Files are divided into fixed size pages which stores data/index
+File(s) - One or more file that stores data or index
+Page(s) - Files are divided into fixed size pages which stores data/index
 
+![File_page](https://github.com/ashishpaliwal007/database-internals-book-reading/assets/148831617/a25a4147-f9a4-41e4-84e3-6c5444a4d613)
+
+
+
+## Storage Manager
+
+- Maintains File/Pages
+- Schedules read/write of pages
+- Does not deal with redundancy
+
+### Page
+- Fixed size
+- can hold data/metadata
+- usually self conatined
+- has unique id
+
+
+## Page Management
+
+DBMS maintains pages in different ways
+- Heap File Organization
+- Tree File Organization
+- Sequential/Sorted File Organization (ISAM)
+- Hashing File Organization
+
+Storage Manager has to support following operations for Pages
+- Create
+- Update
+- Write
+- Delete
+
+### Page Layout
+
+Page layout determines how data is stored inside pages
+
+Approach #1: Tuple Oriented Storage
+Approach #2: Log Structures Storage
+Approach #3: Index-organized Storage
+
+
+### Tuple Orineted Storage
+
+#### Fixed Size Tuples
+- Store Tuple one after other
+- Doesn't allow variable size data
+- Waste a lot of space
+
+#### Slotted Page
+
+To conserve space and support variable size tuple, slotted pages are used.
+Idea is to maintain an Slot Array to maintain pointer to Tuples. 
+Each slot entry is empty or points a valid Tuple within the page
+This approach does need defragmentation to reclaim space
+
+![slotted_page](https://github.com/ashishpaliwal007/database-internals-book-reading/assets/148831617/3ed528a5-8254-4e63-af48-af715d893d14)
+
+#### Tuple or Cell Layout
+
+Using the metadata, we can add meaning to the Tuples. Like for B-Tree we can use the Tuple to store node information
+
+The Last section of book Cell Layout is specific to B-Tree and it makes more sense to cover it along the B-Tree implementation in the next chapter
