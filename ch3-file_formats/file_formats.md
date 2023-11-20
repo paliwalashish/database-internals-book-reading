@@ -1,4 +1,4 @@
-# File Formats (Work in Progress)
+# File Formats
 
 
 ## Motivation
