@@ -47,3 +47,69 @@ Several Systems participate in achiving Transaction, some of them are listed bel
 
 ## Buffer Management
 
+Some Terminology
+
+*Buffer pool* - Pool of Pages in memory
+*paged in* - Loaded from disk to memory
+*dirty* - Page cntext modified
+*flushed* - Page written back to persistent storage
+
+#### Page Cache
+
+- Keeps cached page content
+- buffers modification
+- Manages Page in requests
+- Evicts the pages when needed
+
+
+## Caching Semantics
+
+Only Buffer Manager makes changes to persistance store, hence it has control of page cache
+It gives DBMS more control over memory management and disk accesses including pre-fetching
+
+### Cache Eviction
+
+Page Cache is in memory, so crash can lead to Data Loss.
+To avoid this *Checkpointing* is used. Operations are written to WAL and works in coordination till it's safe to apply changes
+
+Trade-off 
+
+- Reduce flushes for less disk access
+- quick eviction but frequent disk access
+- evition and flush balance
+- Maintain memory boundaries for Cache
+- Avoiding Data loss
+
+#### Locking Pages
+
+Some pages are always needed, we can pin them in cache to avoid page-in/out like higher level nodes in tree
+
+### Page Replacement
+
+We need efficient Page Replacement policies to manage Pages.
+
+#### FIFO
+
+- Maintain a queue of page id in the insertion order
+- does not account for page access
+
+#### LRU
+- Least Recently Used
+- Queue of eviction candidate in insertion order, allows to put page back at tail
+- expensive updating and relinking nodes in concurrent environment
+
+### Clock
+
+CLOCK-sweep holds references to pages and assocaited access bits in circular buffer
+
+- each access increments the counter
+
+Algo to evict
+
+- Iterate the circular buffer
+- Inspect access bit, if it is 1 and unreferenced, set to 0
+- If bit is 0, schedule for eviction
+- If page is referened, access bit remains unchanges
+
+Algo is simple and does not require additional locking
+
