@@ -113,3 +113,33 @@ Algo to evict
 
 Algo is simple and does not require additional locking
 
+### LFU
+
+Least Frequently used. We can start tracking page reference events and evict the ones least used.
+
+## Recovery
+
+WAL or Write Ahead Log is a append-only disk resident structure used for crash and Transaction recovery.
+WAL writes changes to disk, however the Page buffer keeps pages in memory till they are flushed.
+
+WAL does
+- allow page cache to buffer changes in memory ensuring semantics
+- Persist all opeartions on disk
+- Allows lost in-memory changes to be reconstructed from disk in case of failure
+
+
+### Log Semantics
+
+WAL is 
+- append only
+- immutable
+- sequence of log records
+- has Log Sequence Number (LSN)
+- Holds record of transaction completion
+
+*Sync checkpoint* - process that forces all dirty pages to be flushed on disk
+
+Steal Policy - allows a modified page by transaction to be flushed before commit
+No-Steal Policy - does not allow uncomitted transaction on disk
+Force Policy - all modified pages from transaction to be flushed to disk before commit
+No-Force Policy - allow transaction to commit even without page flush
