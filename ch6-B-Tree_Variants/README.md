@@ -10,6 +10,11 @@ Common Themes for B-Trees
 - Delete
 - On Disk Representation
 
+## Chapter Mindmap
+
+<img width="2159" alt="B-Tree Variants" src="https://github.com/ashishpaliwal007/database-internals-book-reading/assets/148831617/d05d6c3b-185f-4dea-962b-e1810b1e9ca5">
+
+
 ## B-Tree Variants
 
 ![btree_vars](https://github.com/ashishpaliwal007/database-internals-book-reading/assets/148831617/dbf3c936-5f52-4577-bc3f-bfbd2298e5b7)
