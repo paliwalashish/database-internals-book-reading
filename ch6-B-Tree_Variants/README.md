@@ -67,3 +67,21 @@ Adopts lightweight, concurreny and update friendly approach by  buffering and de
 Update Buffers are accessed during reads
 Update buffer us merged with page content upon flush
 Update Buffer are implemented as SkipLists
+
+### Lazy-Adaptive Tree
+
+Optimized version to keep buffers at subtree level, instead of Node level
+
+Update Process
+
+- Add update to Root node buffer
+- Buffer becomes full or reach a threshold storage
+- Propogate changes to lower level
+- If lower level fill up, continue till we reach leaf level
+- Batch operations are performed at Leaf level, including Tree Structure changes
+
+Schematic representation, when root buffer is not full
+
+![LazyTreeInitial](https://github.com/ashishpaliwal007/database-internals-book-reading/assets/148831617/fbef7624-59a7-4bed-b86d-dcda9251a89d)
+
+
