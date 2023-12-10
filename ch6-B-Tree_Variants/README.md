@@ -84,4 +84,46 @@ Schematic representation, when root buffer is not full
 
 ![LazyTreeInitial](https://github.com/ashishpaliwal007/database-internals-book-reading/assets/148831617/fbef7624-59a7-4bed-b86d-dcda9251a89d)
 
+## FD Tree
 
+Small mutable BTree and multiple immutable sorted runs.
+
+- Buffers updates in B-Tree
+- Once Tree is full, it is written to a sorted immutable file
+- The immutable files/runs are merged, if they reach a certain Threshold
+- Pointers between levels are maintained by Fractional Cascading
+
+![FDTree1](https://github.com/ashishpaliwal007/database-internals-book-reading/assets/148831617/7aec2404-c4b6-477d-a551-57130ea29da9)
+
+
+### Fractional Cascading
+
+What is the problem we are trying to solve?
+
+Since FD Tree write sorted immutable runs/files, how do we located entries in the Sorted Arrays?
+
+FD Trees use Fractional Cascading to quickly find the element. The idea is to build bridges between neighbor levels. Bridges are build by pulling elemenst from lower level to higher levels, if they don't exist and pointing to the location in pulled array.
+
+Let's look at the example array below
+
+![FC1](https://github.com/ashishpaliwal007/database-internals-book-reading/assets/148831617/c59d5fac-c005-413f-a74a-dbb8f664036e)
+
+
+We choose to make bridge with every alternate array (highlighted)
+
+![FC2](https://github.com/ashishpaliwal007/database-internals-book-reading/assets/148831617/d5f04ddd-872a-451e-b51a-dc5d5d139a62)
+
+After building fences, this is how final array looks like
+
+![FC3](https://github.com/ashishpaliwal007/database-internals-book-reading/assets/148831617/d2bc4960-ed20-49c1-85ee-059459fbe8d9)
+
+
+### What about Run Size?
+
+FD Tree create logarithmic size sorted runs i.e array size increses by a factor of k
+
+- Mutable Tree accepts inputs
+- Once Tree becomes full, contents are merged to Level 1 run
+- Once Level 1 run reaches a threashold, it's contents are merged with Level 2 run and so-on
+- FD Trees uses adaptive version of Fractional Cascading, where head element is progagated as bridge element (in our example above we used every alternative element)
+- To handle multiple entries of same key, a Tombstone is inserted, which leads to entry being discarded at lowest level
