@@ -176,6 +176,24 @@ Like a B-Tree, BW-Tree may also need Nodes to be split or merged.
 - Split delta node invalidates records in the splitting node and has link to new logical sibling node
 - Parent is updated with newly created node
 
+## Cache-Oblivious B-Trees
+
+- Treats on-disk strcutures very similar to in-memory structures
+- Gives asymptotically optimal performance
+- Doesn't need to know details abour block size, disk page or cache lines
+
+Disk is partitioned into blocks and data is transferred between disk and cache as blocks
+
+### Van Emde Boas Layout
+
+- A Cache-oblivious B-Tree consists of a static B-Tree and a packed array Structure.
+- Tree is split at the middle of the edge and this process is recursive
+- N square subtrees are formed
+- Recursive tree is stored in contigous memory
+- Contains gaps for future inserted elements
+- If gaps are not present, elements have to be moved
+- If array is too dense or sparse, tree is rebuilt
+
 #### Merging
 - A special remove delat node is appended to right sibling, indicating merge
 - A merge delta node is created on left sibling to point to the content of right sibling
