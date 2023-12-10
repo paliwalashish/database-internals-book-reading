@@ -48,3 +48,22 @@ Lightning Memory-Mapped Databae (LMDB) implements Copy-on-write approach
 LMDB keeps 2 version of root node - latest version and one with updates in progress.
 All reads go through latest version
 Once update is completed, latest version is replaced with new version
+
+## Lazy B-Tree
+
+*Motivation* - Reduce the cost of updating B-Tree
+
+Adopts lightweight, concurreny and update friendly approach by  buffering and delaying updates
+
+### Wired Tiger
+
+- MongoDB Storage engine
+- Uses different format for in-memory and on-disk pages
+- Updates are saved to in-memory buffer
+- Page is reconciled with buffer before writing
+
+![Wiretiger](https://github.com/ashishpaliwal007/database-internals-book-reading/assets/148831617/f0d59426-71cb-4d5b-9757-0e78e0c94c74)
+
+Update Buffers are accessed during reads
+Update buffer us merged with page content upon flush
+Update Buffer are implemented as SkipLists
