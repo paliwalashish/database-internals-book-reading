@@ -127,3 +127,57 @@ FD Tree create logarithmic size sorted runs i.e array size increses by a factor 
 - Once Level 1 run reaches a threashold, it's contents are merged with Level 2 run and so-on
 - FD Trees uses adaptive version of Fractional Cascading, where head element is progagated as bridge element (in our example above we used every alternative element)
 - To handle multiple entries of same key, a Tombstone is inserted, which leads to entry being discarded at lowest level
+
+## Bw-Trees or Buzzword-Tree
+
+Breaks a Tree node into smaller parts, which are written in append-only manner
+
+Motivation is to Address
+- Write Amplification - updates to Node require updates to disk page
+- Space Amplification - reserve extra space to make updtes possible
+- Solving concurrency problems
+
+Bw-Tree batches updates to different Nodes by append-only storage, link nodes sa chain and use in-memory structure that allows pointers between nodes with atomic swap operation. Atomic swap avoid need of Lock
+
+### Update Chains
+
+- Create a Base Node
+- All modifications create delta nodes, linked together as linked list to the base node
+- Since nodes are of different sizes, they can be stored together as they won't be page aligned
+
+Although this is space efficient, read path has to traverse all the nodes
+
+A simple representation of Node would be something like this
+
+![BwTreeNode](https://github.com/ashishpaliwal007/database-internals-book-reading/assets/148831617/8a9349df-6e0a-4df3-b831-402686b8221b)
+
+Each Node has a logical identifier. There is an in-memory mapping table that maintains mapping between identifier and disk location.
+
+Simple example of BW-Tree (all nodes not shown)
+
+![bwtree](https://github.com/ashishpaliwal007/database-internals-book-reading/assets/148831617/adcd0a95-0367-4676-b5ab-336aef87572c)
+
+Update Process
+
+1. Find target leaf node, start from root and traverse down with help of mapping table
+2. Create a new delta node and attach to the last node (base node or delta node)
+3. Update Mapping Table with delta node created in Step #2
+
+A Compare and Swap operation is perfomed in in-memory strcuture, which avoid use of Latches.
+
+### Strcutural Modifications
+
+Like a B-Tree, BW-Tree may also need Nodes to be split or merged.
+
+#### Split Operation
+
+- Merge delta nodes with Base node
+- A special split delta node is added to the node being split, for readers
+- Split delta node invalidates records in the splitting node and has link to new logical sibling node
+- Parent is updated with newly created node
+
+#### Merging
+- A special remove delat node is appended to right sibling, indicating merge
+- A merge delta node is created on left sibling to point to the content of right sibling
+- Parent is updated by removing pointer to right sibling
+
