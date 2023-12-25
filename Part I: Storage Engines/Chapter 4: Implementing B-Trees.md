@@ -1,4 +1,4 @@
-# Implementing B-Trees
+# Chapter 4: Implementing B-Trees
 
 ## Page Headers
 
@@ -17,7 +17,7 @@ Page Header holds information used for following but not limited to
 
 - Multibyte block, a constant value
 - used to signal page, kind etc
-  
+
 ## Sibling Links
 
 - Optional implementation choice to connect to Nodes on the same level
@@ -38,8 +38,8 @@ Pages used for allocating/storing data
 - Way of building variable size nodes, without copying data to contiguous regions
 
 - Example
-  - We have 4K page and with few insertions it may grow beyond 4K
-  - We allocate extension 4K pages and link to original page
+    - We have 4K page and with few insertions it may grow beyond 4K
+    - We allocate extension 4K pages and link to original page
 
 
 Estimating Node payload bytes
@@ -75,9 +75,9 @@ Pseudocode
 - Postponing merges/splits to amortize operation costs
 - Balancing can be performed during node insertion or delete
 - Different approaches to rebalance
-  - Split node into 3 (each node is 2/3 full)
-  - They need additional bookkeeping
- 
+    - Split node into 3 (each node is 2/3 full)
+    - They need additional bookkeeping
+
 ## Right-Only appends
 - Used for monotonically increasing value as Primary key
 - Optimization as insertions are happening towards the end of index
@@ -99,7 +99,7 @@ Pseudocode
 
   ## Vacuum and Maintainance
 
-  - Slotted pages require maintainance to avoid empty spaces and slots
-  - Process starts from root and see the referenced data, marks the unreachable data as garbage which can collected
-  - This often lead to re-writing of the pages
-  - The process is known as Compaction, Vacuum or maintenance
+    - Slotted pages require maintainance to avoid empty spaces and slots
+    - Process starts from root and see the referenced data, marks the unreachable data as garbage which can collected
+    - This often lead to re-writing of the pages
+    - The process is known as Compaction, Vacuum or maintenance

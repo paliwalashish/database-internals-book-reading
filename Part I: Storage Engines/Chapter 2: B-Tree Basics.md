@@ -1,3 +1,10 @@
+# Chapter 2: B-Tree Basics
+
+Mind Map for the chapter
+
+<img width="1854" alt="B-Tree" src="https://github.com/ashishpaliwal007/database-internals-book-reading/assets/148831617/326154d9-7c3b-419a-a6d3-cd6ad75de6a6">
+
+
 ## Issue with BST on disk
 - locality - elements may span multiple disk pages
 - can overcome above issue by using paged Binary Trees
@@ -55,7 +62,7 @@
 #### Lookup Algo
 - From root, perform binary search to find 1st separator key greater than search value
 - Follow the pointer and repeat the process in sub-tree till leaf node
-- Either we find the node or it's predecessor 
+- Either we find the node or it's predecessor
 
 #### Node Splits
 - To ensure nodes can hold the Key value pairs
