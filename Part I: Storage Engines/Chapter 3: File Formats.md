@@ -1,5 +1,8 @@
-# File Formats
+## Chapter 3: File Formats
 
+### Mind Map of Chapter
+
+<img width="1862" alt="File_Formats" src="https://github.com/ashishpaliwal007/database-internals-book-reading/assets/148831617/b440b9e1-8eda-4090-818c-d67ea6e688db">
 
 ## Motivation
 
@@ -58,7 +61,7 @@ String => Database Internals
 |0x12  | Database Internals|
 ----------------------------
 ```
-_Note_: Here we have not considered the String encoding for simplicity. 
+_Note_: Here we have not considered the String encoding for simplicity.
 
 
 ### Bit Packed Data
@@ -77,9 +80,9 @@ _Note_: Here we have not considered the String encoding for simplicity.
 
 ## Storage Structure
 
-Database can have single file or multi file storage. 
+Database can have single file or multi file storage.
 
-Typically, we have Database storage as 
+Typically, we have Database storage as
 
 File(s) - One or more file that stores data or index
 Page(s) - Files are divided into fixed size pages which stores data/index
@@ -134,7 +137,7 @@ Approach #3: Index-organized Storage
 #### Slotted Page
 
 To conserve space and support variable size tuple, slotted pages are used.
-Idea is to maintain an Slot Array to maintain pointer to Tuples. 
+Idea is to maintain an Slot Array to maintain pointer to Tuples.
 Each slot entry is empty or points a valid Tuple within the page
 This approach does need defragmentation to reclaim space
 

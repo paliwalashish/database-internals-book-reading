@@ -1,11 +1,11 @@
-# B-Tree Variants
+# Chapter 6: B-Tree Variants
 
 Common Themes for B-Trees
 
 - Tree Structure
 - Balancing
-  - Splits
-  - Merges
+    - Splits
+    - Merges
 - Lookup
 - Delete
 - On Disk Representation
@@ -44,11 +44,11 @@ Lightning Memory-Mapped Database (LMDB) implements Copy-on-write approach
 - LMDB single level data store, directly from memory-map
 - Doesn't have DB level caching
 
- Update process
+Update process
 
- - Identify the target leaf Node to be updated
- - Copy all the Nodes in the path
- - Update the target leaf and propagate changes upwards
+- Identify the target leaf Node to be updated
+- Copy all the Nodes in the path
+- Update the target leaf and propagate changes upwards
 
 LMDB keeps 2 version of root node - latest version and one with updates in progress.
 All reads go through latest version

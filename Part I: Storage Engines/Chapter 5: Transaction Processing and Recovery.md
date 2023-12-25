@@ -1,4 +1,4 @@
-# Transaction Processing and Recovery
+# Chapter 5: Transaction Processing and Recovery
 
 # What is a Transaction?
 
@@ -10,8 +10,8 @@ A Transaction is
 ### ACID Properties
 
 #### Atomicity
- Transaction Steps are indivisble, either all or none. Can be committed or rolled back.
- Transaction can be retried, in case it was aborted
+Transaction Steps are indivisble, either all or none. Can be committed or rolled back.
+Transaction can be retried, in case it was aborted
 
 #### Consistency
 Trasnaction should only bring Database from one valid state to another valid state, including maintaining all invarients
@@ -72,7 +72,7 @@ It gives DBMS more control over memory management and disk accesses including pr
 Page Cache is in memory, so crash can lead to Data Loss.
 To avoid this *Checkpointing* is used. Operations are written to WAL and works in coordination till it's safe to apply changes
 
-Trade-off 
+Trade-off
 
 - Reduce flushes for less disk access
 - quick eviction but frequent disk access
@@ -130,7 +130,7 @@ WAL does
 
 ### Log Semantics
 
-WAL is 
+WAL is
 - append only
 - immutable
 - sequence of log records
