@@ -8,9 +8,3 @@ Book - [Database Internals](https://www.amazon.com/Database-Internals-Deep-Distr
 
 The repository is organized in same section as Database Internals book.
 Each chapter shall be it's own page inside the section
-
-
-## Contents
-- [Chapter 1: Storage Engines](Week1-StorageEngines/README.md)
-- [Chapter 2: B-Tree Basics](ch2-BTree-Basics/README.md)
-
